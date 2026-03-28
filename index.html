@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Roma | Eccellenza Automobilistica</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ita-green: #008C45;
+            --ita-white: #F4F4F4;
+            --ita-red: #CD212A;
+            --dark-bg: #0a0a0a;
+            --card-bg: #1a1a1a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--dark-bg);
+            color: white;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Sfumatura Tricolore Superiore */
+        .top-bar {
+            height: 4px;
+            background: linear-gradient(90deg, var(--ita-green) 0%, var(--ita-white) 50%, var(--ita-red) 100%);
+            width: 100%;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header {
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 10, 10, 0.95);
+            position: fixed;
+            width: 100%;
+            top: 4px;
+            z-index: 999;
+            border-bottom: 1px solid #333;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .logo span { color: var(--ita-red); }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 30px;
+            font-size: 0.9rem;
+            transition: 0.3s;
+            text-transform: uppercase;
+        }
+
+        nav a:hover { color: var(--ita-green); }
+
+        /* Hero Section */
+        .hero {
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=1920') no-repeat center center/cover;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            font-weight: 300;
+            color: #ccc;
+        }
+
+        /* Sezione Solo Nuovo */
+        .badge-new {
+            display: inline-block;
+            padding: 5px 15px;
+            border: 1px solid var(--ita-green);
+            color: var(--ita-green);
+            border-radius: 20px;
+            margin-bottom: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        /* Showroom Section */
+        .showroom {
+            padding: 100px 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--ita-green), var(--ita-red));
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .car-card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.4s ease;
+            border: 1px solid #222;
+        }
+
+        .car-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--ita-white);
+        }
+
+        .car-img {
+            height: 200px;
+            background: #333; /* Placeholder per le immagini */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-style: italic;
+            color: #555;
+        }
+
+        .car-info {
+            padding: 20px;
+        }
+
+        .car-info h3 { margin-bottom: 10px; }
+
+        .price {
+            font-size: 1.3rem;
+            color: var(--ita-green);
+            font-weight: 700;
+        }
+
+        footer {
+            padding: 50px 5%;
+            background: #050505;
+            text-align: center;
+            border-top: 1px solid #222;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar"></div>
+
+    <header>
+        <div class="logo">AUTO <span>ROMA</span></div>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#showroom">Showroom</a>
+            <a href="#">Servizi</a>
+            <a href="#">Contatti</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="badge-new">Solo Veicoli Nuovi</div>
+        <h1>L'Eterna Bellezza della Guida</h1>
+        <p>Benvenuti in Auto Roma. Selezioniamo solo il meglio della produzione mondiale per offrirvi un'esperienza di acquisto senza compromessi.</p>
+    </section>
+
+    <section class="showroom" id="showroom">
+        <div class="section-title">
+            <h2>Il Nostro Listino</h2>
+        </div>
+        
+        <div class="grid" id="car-list">
+            <div class="car-card">
+                <div class="car-img">In attesa dei dati...</div>
+                <div class="car-info">
+                    <h3>Modello Esempio</h3>
+                    <p>Sportiva / Nuova</p>
+                    <div class="price">€ --.---</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Auto Roma S.r.l. - Tutti i diritti riservati.</p>
+        <p style="font-size: 0.7rem; color: #444; margin-top: 10px;">Roma, Italia - Rivenditore Autorizzato</p>
+    </footer>
+
+</body>
+</html>
