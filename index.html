@@ -8,11 +8,12 @@
     <style>
         :root {
             --ita-green: #008C45;
-            --ita-white: #F4F4F4;
+            --ita-white: #FFFFFF; /* Esaltato il bianco */
             --ita-red: #CD212A;
-            --dark-bg: #0a0a0a;
-            --card-bg: #1a1a1a;
-            --accent-gradient: linear-gradient(90deg, var(--ita-green), var(--ita-white), var(--ita-red));
+            --dark-bg: #fdfdfd; /* Sfondo principale chiaro */
+            --card-bg: #ffffff;
+            --text-main: #1a1a1a;
+            --accent-gradient: linear-gradient(90deg, var(--ita-green), var(--ita-red));
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -20,32 +21,33 @@
         body {
             font-family: 'Montserrat', sans-serif;
             background-color: var(--dark-bg);
-            color: white;
+            color: var(--text-main);
             line-height: 1.6;
             overflow-x: hidden;
         }
 
         /* Sfumatura Tricolore Superiore */
         .top-bar {
-            height: 4px;
-            background: var(--accent-gradient);
+            height: 6px;
+            background: linear-gradient(90deg, var(--ita-green) 33%, #fff 33%, #fff 66%, var(--ita-red) 66%);
             width: 100%;
             position: fixed;
             top: 0;
-            z-index: 1000;
+            z-index: 1001;
         }
 
         header {
-            padding: 20px 5%;
+            padding: 15px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(10, 10, 10, 0.95);
+            background: rgba(255, 255, 255, 0.98);
             position: fixed;
             width: 100%;
-            top: 4px;
-            z-index: 999;
-            border-bottom: 1px solid #333;
+            top: 6px;
+            z-index: 1000;
+            border-bottom: 1px solid #eee;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
 
         .logo {
@@ -54,13 +56,29 @@
             letter-spacing: 2px;
             text-transform: uppercase;
             cursor: pointer;
+            color: var(--text-main);
         }
 
         .logo span { color: var(--ita-red); }
+        .logo span.green { color: var(--ita-green); }
+
+        /* Mobile Menu Toggle */
+        .menu-btn {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+        .menu-btn span {
+            width: 25px;
+            height: 3px;
+            background: var(--text-main);
+            transition: 0.3s;
+        }
 
         nav ul { display: flex; list-style: none; }
         nav a {
-            color: white;
+            color: var(--text-main);
             text-decoration: none;
             margin-left: 30px;
             font-size: 0.8rem;
@@ -68,6 +86,7 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             cursor: pointer;
+            font-weight: 700;
         }
 
         nav a:hover { color: var(--ita-green); }
@@ -95,13 +114,13 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
-                        url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=1920') no-repeat center center/cover;
+            background: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.9)), 
+                        url('https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&q=80&w=1920') no-repeat center center/cover;
             padding: 0 20px;
         }
 
-        .hero h1 { font-size: 3.5rem; margin-bottom: 15px; text-transform: uppercase; }
-        .hero p { font-size: 1.1rem; max-width: 700px; color: #bbb; margin-bottom: 30px; }
+        .hero h1 { font-size: 3.5rem; margin-bottom: 15px; text-transform: uppercase; color: var(--text-main); }
+        .hero p { font-size: 1.1rem; max-width: 700px; color: #555; margin-bottom: 30px; }
 
         /* Sezioni Testuali (Storia & Servizi) */
         .content-section { padding: 60px 10%; max-width: 1200px; margin: 0 auto; }
@@ -109,21 +128,24 @@
             font-size: 2.5rem; 
             margin-bottom: 30px; 
             text-transform: uppercase;
-            border-bottom: 3px solid var(--ita-green);
+            border-bottom: 4px solid var(--ita-green);
             display: inline-block;
             padding-bottom: 5px;
+            color: var(--text-main);
         }
 
-        .text-block { font-size: 1.1rem; color: #ccc; line-height: 2; margin-bottom: 40px; }
+        .text-block { font-size: 1.1rem; color: #444; line-height: 2; margin-bottom: 40px; }
         .highlight-box {
-            border-left: 4px solid var(--ita-red);
+            border-left: 5px solid var(--ita-red);
             padding: 20px;
-            background: #111;
+            background: #f9f9f9;
             margin: 20px 0;
+            font-style: italic;
+            color: #222;
         }
 
         /* Showroom Section */
-        .showroom { padding: 40px 5%; }
+        .showroom { padding: 40px 5%; background: #f5f5f5; }
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -133,52 +155,81 @@
 
         .car-card {
             background: var(--card-bg);
-            border-radius: 5px;
+            border-radius: 8px;
             overflow: hidden;
             transition: 0.3s;
-            border: 1px solid #222;
+            border: 1px solid #eee;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
 
-        .car-card:hover { border-color: var(--ita-green); transform: scale(1.02); }
-        .car-img { height: 220px; background: #222; display: flex; align-items: center; justify-content: center; color: #444; }
-        .car-info { padding: 25px; }
-        .price { color: var(--ita-green); font-weight: 700; font-size: 1.4rem; margin-top: 10px; }
+        .car-card:hover { border-color: var(--ita-green); transform: translateY(-5px); }
+        .car-img { height: 220px; background: #eee; display: flex; align-items: center; justify-content: center; color: #999; }
+        .car-info { padding: 25px; text-align: center; }
+        .price { color: var(--ita-red); font-weight: 700; font-size: 1.4rem; margin-top: 10px; }
 
         /* Contatti */
         .contact-card {
-            background: #111;
+            background: #fff;
             padding: 50px;
             text-align: center;
             border-radius: 10px;
-            border-top: 5px solid var(--ita-red);
+            border: 1px solid #eee;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
         .phone-number {
             font-size: 2.5rem;
-            color: var(--ita-white);
+            color: var(--ita-green);
             margin: 20px 0;
             display: block;
             text-decoration: none;
+            font-weight: 700;
         }
 
         footer {
             padding: 40px 5%;
-            background: #050505;
+            background: #fff;
             text-align: center;
-            border-top: 1px solid #222;
+            border-top: 1px solid #eee;
             margin-top: 50px;
+            color: #888;
         }
 
         .btn-cta {
-            padding: 12px 35px;
+            padding: 15px 40px;
             background: var(--ita-green);
             color: white;
             text-decoration: none;
             text-transform: uppercase;
             font-weight: 700;
-            border-radius: 3px;
+            border-radius: 50px;
             transition: 0.3s;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
         }
-        .btn-cta:hover { background: var(--ita-red); }
+        .btn-cta:hover { background: var(--ita-red); box-shadow: 0 5px 15px rgba(205, 33, 42, 0.3); }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 768px) {
+            header { padding: 15px 5%; }
+            .menu-btn { display: flex; }
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: #fff;
+                padding: 20px;
+                border-bottom: 1px solid #eee;
+            }
+            nav ul.active { display: flex; }
+            nav a { margin: 15px 0; display: block; text-align: center; }
+            .hero h1 { font-size: 2.2rem; }
+            .section-title { font-size: 1.8rem; }
+            .phone-number { font-size: 1.6rem; }
+        }
     </style>
 </head>
 <body>
@@ -186,9 +237,12 @@
     <div class="top-bar"></div>
 
     <header>
-        <div class="logo" onclick="showPage('home')">AUTO <span>ROMA</span></div>
+        <div class="logo" onclick="showPage('home')"><span class="green">AUTO</span> <span>ROMA</span></div>
+        <div class="menu-btn" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+        </div>
         <nav>
-            <ul>
+            <ul id="nav-menu">
                 <li><a onclick="showPage('home')">Home</a></li>
                 <li><a onclick="showPage('storia')">La Storia</a></li>
                 <li><a onclick="showPage('showroom')">Showroom</a></li>
@@ -200,9 +254,8 @@
 
     <main id="home" class="page active">
         <section class="hero">
-            <div style="width: 80px; height: 3px; background: var(--accent-gradient); margin-bottom: 20px;"></div>
-            <h1>L'Eterna Bellezza della Guida</h1>
-            <p>Dal cuore della Capitale, Auto Roma seleziona esclusivamente veicoli nuovi delle marche più prestigiose. Tecnologia, design e prestazioni senza compromessi.</p>
+            <h1 style="color:var(--ita-green)">Passione <span style="color:var(--ita-red)">Italiana</span></h1>
+            <p>Benvenuti in Auto Roma. Dal 1985 selezioniamo esclusivamente veicoli nuovi delle marche più prestigiose. Tecnologia, design e prestazioni senza compromessi.</p>
             <a onclick="showPage('showroom')" class="btn-cta">Esplora Showroom</a>
         </section>
     </main>
@@ -211,13 +264,13 @@
         <div class="content-section">
             <h2 class="section-title">La Nostra Storia</h2>
             <div class="text-block">
-                <p>Auto Roma nasce nel 1985 da una visione: portare l'eccellenza motoristica internazionale tra i sanpietrini della Città Eterna. Fondata dalla famiglia Valenti, la concessionaria ha attraversato decenni di evoluzione automobilistica, mantenendo sempre fede a un unico principio: **l'esclusività del nuovo**.</p>
+                <p>Auto Roma nasce nel 1985 da una visione: portare l'eccellenza motoristica internazionale tra i sanpietrini della Città Eterna. Fondata dalla famiglia Valenti, la concessionaria ha attraversato decenni di evoluzione automobilistica, mantenendo sempre fede a un unico principio: <strong>l'esclusività del nuovo</strong>.</p>
                 
                 <div class="highlight-box">
                     "Non vendiamo semplicemente automobili. Curiamo il legame tra pilota e strada, garantendo che ogni chilometro percorso sia un omaggio alla meccanica italiana ed internazionale."
                 </div>
 
-                <p>Oggi, Auto Roma è il punto di riferimento per chi non accetta il mercato dell'usato. Siamo convinti che la storia di ogni guidatore debba iniziare con un contachilometri che segna zero. La nostra sede storica, oggi rinnovata in un moderno showroom di vetro e acciaio, continua a ospitare i sogni di chi cerca il massimo in termini di sicurezza e stile.</p>
+                <p>Oggi, Auto Roma è il punto di riferimento per chi non accetta compromessi. Siamo convinti che la storia di ogni guidatore debba iniziare con un contachilometri che segna zero. La nostra sede storica continua a ospitare i sogni di chi cerca il massimo in termini di sicurezza e stile.</p>
             </div>
         </div>
     </main>
@@ -226,15 +279,15 @@
         <section class="showroom">
             <div class="content-section" style="padding-bottom: 0;">
                 <h2 class="section-title">Showroom 2026</h2>
-                <p>Tutti i modelli esposti sono in pronta consegna, nuovi di fabbrica e configurabili.</p>
+                <p>Tutti i modelli esposti sono rigorosamente <strong>NUOVI DI FABBRICA</strong> e configurabili.</p>
             </div>
             
             <div class="grid" id="car-list">
                 <div class="car-card">
-                    <div class="car-img">In attesa del listino...</div>
+                    <div class="car-img">Showroom in aggiornamento...</div>
                     <div class="car-info">
                         <h3>Configurazione Aperta</h3>
-                        <p>Inviaci i modelli per popolare la vetrina</p>
+                        <p>Nuova - Disponibile</p>
                         <div class="price">€ --.---</div>
                     </div>
                 </div>
@@ -246,14 +299,14 @@
         <div class="content-section">
             <h2 class="section-title">I Nostri Servizi</h2>
             <div class="text-block">
-                <h3 style="color:var(--ita-green)">Vendita Esclusiva Nuovo</h3>
-                <p>Siamo specializzati unicamente nella vendita di veicoli nuovi. Questo ci permette di offrire garanzie ufficiali estese e pacchetti manutenzione inclusi per i primi 5 anni.</p>
+                <h3 style="color:var(--ita-green); margin-bottom: 10px;">Vendita Esclusiva Nuovo</h3>
+                <p>Collaboriamo direttamente con le case madri per offrire solo veicoli immatricolati per la prima volta, con garanzia ufficiale integrale.</p>
                 
-                <h3 style="color:var(--ita-white); margin-top:30px">Consulenza Tailor-Made</h3>
-                <p>Ogni cliente è unico. I nostri esperti vi guideranno nella scelta degli optional e delle finiture per rendere la vostra auto un pezzo irripetibile.</p>
+                <h3 style="color:var(--ita-red); margin-top:30px; margin-bottom: 10px;">Consulenza Tailor-Made</h3>
+                <p>Ogni cliente è unico. I nostri esperti vi guideranno nella scelta degli optional per rendere la vostra auto un pezzo irripetibile.</p>
 
-                <h3 style="color:var(--ita-red); margin-top:30px">Finanziamenti Elite</h3>
-                <p>Grazie a partnership con i principali istituti di credito, offriamo tassi agevolati e piani di leasing personalizzati per privati e aziende del territorio romano.</p>
+                <h3 style="color:var(--ita-green); margin-top:30px; margin-bottom: 10px;">Finanziamenti Elite</h3>
+                <p>Soluzioni di leasing e finanziamento a tasso agevolato per privati e aziende del territorio romano.</p>
             </div>
         </div>
     </main>
@@ -261,33 +314,35 @@
     <main id="contatti" class="page">
         <div class="content-section">
             <div class="contact-card">
-                <h2 class="section-title">Contatta un Consulente</h2>
-                <p>Siamo aperti dal Lunedì al Sabato, dalle 09:00 alle 19:30.</p>
+                <h2 class="section-title">Parla con noi</h2>
+                <p>Il nostro showroom è aperto dal Lunedì al Sabato (09:00 - 19:30).</p>
                 <a href="tel:+393331234567" class="phone-number">+39 333 123 4567</a>
-                <p>Via del Corso, 100 - 00186 Roma (RM)</p>
-                <br><br>
-                <a href="mailto:info@autoroma.it" class="btn-cta">Invia un'Email</a>
+                <p style="font-weight: 700;">Via del Corso, 100 - Roma (RM)</p>
+                <br>
+                <a href="mailto:info@autoroma.it" class="btn-cta">Richiedi Informazioni</a>
             </div>
         </div>
     </main>
 
     <footer>
-        <p>&copy; 2026 Auto Roma S.r.l. - Eccellenza Italiana Nuova</p>
-        <div style="height: 2px; width: 50px; background: var(--accent-gradient); margin: 15px auto;"></div>
-        <p style="font-size: 0.7rem; color: #444;">Rivenditore Autorizzato - P.IVA 0123456789</p>
+        <p><strong>AUTO ROMA</strong> - Eccellenza Italiana Nuova</p>
+        <div style="height: 2px; width: 60px; background: var(--accent-gradient); margin: 15px auto;"></div>
+        <p style="font-size: 0.75rem; color: #aaa;">&copy; 2026 S.r.l. | P.IVA 0123456789 | Roma, Italia</p>
     </footer>
 
     <script>
         function showPage(pageId) {
-            // Nasconde tutte le pagine
             const pages = document.querySelectorAll('.page');
             pages.forEach(p => p.classList.remove('active'));
-
-            // Mostra la pagina selezionata
             document.getElementById(pageId).classList.add('active');
-
-            // Chiude il menu mobile (se implementato) e torna su
+            
+            // Chiude il menu mobile dopo il click
+            document.getElementById('nav-menu').classList.remove('active');
             window.scrollTo(0, 0);
+        }
+
+        function toggleMenu() {
+            document.getElementById('nav-menu').classList.toggle('active');
         }
     </script>
 
